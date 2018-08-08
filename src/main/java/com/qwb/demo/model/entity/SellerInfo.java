@@ -3,28 +3,40 @@ package com.qwb.demo.model.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * 商家信息
- *
- * @author qwb
- *
- */
-
 public class SellerInfo implements Serializable {
-
     private String id;
+
     private String username;
+
     private String password;
+
     private String openid;
+
     private Date createTime;
+
     private Date updateTime;
+
+    private static final long serialVersionUID = 1L;
+
+    public SellerInfo(String id, String username, String password, String openid, Date createTime, Date updateTime) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.openid = openid;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+    }
+
+    public SellerInfo() {
+        super();
+    }
 
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id = id == null ? null : id.trim();
     }
 
     public String getUsername() {
@@ -32,7 +44,7 @@ public class SellerInfo implements Serializable {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username == null ? null : username.trim();
     }
 
     public String getPassword() {
@@ -40,7 +52,7 @@ public class SellerInfo implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 
     public String getOpenid() {
@@ -48,7 +60,7 @@ public class SellerInfo implements Serializable {
     }
 
     public void setOpenid(String openid) {
-        this.openid = openid;
+        this.openid = openid == null ? null : openid.trim();
     }
 
     public Date getCreateTime() {
@@ -65,17 +77,5 @@ public class SellerInfo implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @Override
-    public String toString() {
-        return "SellerInfo{" +
-                "id='" + id + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", openid='" + openid + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
     }
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
 import java.util.List;
 
 @Controller
@@ -27,5 +26,10 @@ public class SellerController {
             System.out.println(s);
         }
         return sellerInfoService.findAllList();
+    }
+
+    @RequestMapping("/test")
+    public void test() {
+        System.out.println("123");
     }
 }
