@@ -1,36 +1,31 @@
 package com.qwb.demo.controller;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.qwb.demo.annotation.JsonFieldFilter;
 import com.qwb.demo.model.entity.SellerInfo;
 import com.qwb.demo.serviceImpl.SellerInfoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
-@Controller
 @RequestMapping("/seller")
-@EnableAutoConfiguration
 @RestController
 public class SellerController {
 
     @Autowired
     private SellerInfoServiceImpl sellerInfoService;
 
+    @JsonFieldFilter(type = PageInfo.class, include = "pageNum, pageSize, pages, total, list")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<SellerInfo> getAllList(){
-        List<SellerInfo> list = sellerInfoService.findAllList();
-        for (SellerInfo s:list){
-            System.out.println(s);
-        }
-        return sellerInfoService.findAllList();
+    public PageInfo<SellerInfo> getAllList(@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "20") Integer pageSize) {
+        Page<SellerInfo> page = PageHelper.startPage(pageNum, pageSize);
+        sellerInfoService.findAllList();
+        return page.toPageInfo();
     }
 
-    @RequestMapping("/test")
-    public void test() {
-        System.out.println("123");
-    }
 }
