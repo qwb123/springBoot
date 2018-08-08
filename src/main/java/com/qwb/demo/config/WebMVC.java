@@ -1,4 +1,7 @@
 package com.qwb.demo.config;
 
-public class WebMVC {
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+public class WebMVC implements WebMvcConfigurer {
+
 }
