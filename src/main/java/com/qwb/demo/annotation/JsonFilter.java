@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface JsonFieldFilter {
+public @interface JsonFilter {
     Class<?> type();
 
     String include() default "";
